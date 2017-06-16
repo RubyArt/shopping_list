@@ -9,7 +9,7 @@
     %tr
       %td= group.name
       %td
-        = link_to 'Show', group_path(group.id)
-        - if current_user.owned_groups.include?(group)
-          = link_to 'Edit', edit_group_path(group.id)
-          = link_to 'Delete', group_path(group.id), method: :delete, data: {confirm: 'Are you sure?'}
+        = link_to 'Show', group_path(group)
+        - if group.owner?(current_user)
+          = link_to 'Edit', edit_group_path(group)
+          = link_to 'Delete', group_path(group), method: :delete, data: {confirm: 'Are you sure?'}

@@ -3,8 +3,8 @@
 
 %p
   %b Owner:
-  = @group.owner_id
+  = @group.owner.email
 
 %p
   %b Users:
-  = @group.users.order(:email).pluck(:email).join(", ")
+  = @group.users.order(:email).pluck(:email).join(', ')
