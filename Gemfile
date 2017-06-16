@@ -40,10 +40,15 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+group :test do
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '>=9.0.6', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '>= 4.6.0'
 end
 
 group :development do
