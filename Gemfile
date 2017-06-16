@@ -5,11 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'decent_exposure', '>= 3.0.2'
-gem 'decent_decoration', '>= 0.1.0'
-gem 'draper', '>= 3.0.0'
+gem 'sprockets', '3.6.3'
 gem 'devise', '>= 4.3.0'
 gem 'pg', '>= 0.18.4'
+gem 'pry', '>= 0.10.4'
 gem 'haml', '>= 5.0.1'
 gem 'less-rails', '>= 2.8.0'
 gem 'twitter-bootstrap-rails', '>= 4.0.0'
