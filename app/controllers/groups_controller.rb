@@ -1,10 +1,26 @@
 class GroupsController < ApplicationController
-  before_action :check_access_to_group, only: [:show, :edit, :update, :destroy]
-  expose(:groups) { current_user.owned_groups }
-  expose_decorated(:group, attributes: :group_params)
+  before_action :get_group, only: [:show, :edit, :update, :destroy, :check_access_to_group]
+  before_action :check_access_to_group, only: [:edit, :update, :destroy]
+
+  def index
+    @groups = current_user.groups
+  end
+
+  def new
+    @group = Group.new
+  end
+
+  def show
+    @groups = current_user.groups
+    unless @groups.include?(@group)
+      redirect_to groups_path, alert: 'You are not authorized to see this group'
+    end
+  end
 
   def create
-    if group.save
+    @group = Group.new(group_params)
+    @group.set_owner!(current_user)
+    if @group.save
       redirect_to groups_path
     else
       render :new
@@ -12,7 +28,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if group.save
+    if @group.update_attributes(group_params)
       redirect_to groups_path
     else
       render :edit
@@ -20,21 +36,23 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    group.destroy
+    @group.destroy
     redirect_to groups_path
   end
 
   private
 
-  def group_params
-    params.require(:group).permit(:name, user_ids: [])
+  def check_access_to_group
+    unless current_user.owned_groups.include?(@group)
+      redirect_to groups_path, alert: 'You are not authorized to edit this group'
+    end
   end
 
-  def check_access_to_group
-    begin
-      group
-    rescue
-      redirect_to groups_path, alert: 'You are not authorized to see this group'
-    end
+  def get_group
+    @group = Group.find(params[:id])
+  end
+
+  def group_params
+    params.require(:group).permit(:name, user_ids: [])
   end
 end

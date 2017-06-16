@@ -1,0 +1,10 @@
+%h2
+  %b= @group.name
+
+%p
+  %b Owner:
+  = @group.owner_id
+
+%p
+  %b Users:
+  = @group.users.order(:email).pluck(:email).join(", ")
