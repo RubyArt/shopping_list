@@ -5,11 +5,6 @@ class Group < ActiveRecord::Base
   has_many :users, through: :memberships
   belongs_to :owner, class_name: 'User'
 
-  validates :name, :memberships, :owner_id, presence: true
+  validates :name, :users, :owner_id, presence: true
   validates :name, uniqueness: { scope: :owner_id, message: 'This group already exists!' }
-
-  def set_owner!(user)
-    self.owner_id = user.id
-    self.save!
-  end
 end
