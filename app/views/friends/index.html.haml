@@ -1,0 +1,15 @@
+%h1 Friends
+%table.table.table-striped
+  %tr
+    %th First name
+    %th Last name
+    %th Email
+    %th Actions
+  - @friends.each do |friend|
+    %tr
+      %td= friend.first_name
+      %td= friend.last_name
+      %td= friend.email
+      %td
+
+= link_to 'Add friend', new_friend_path, class: 'btn btn-success'

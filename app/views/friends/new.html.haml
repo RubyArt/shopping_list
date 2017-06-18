@@ -1,0 +1,15 @@
+%h1
+%table.table.table-striped
+  %tr
+    %th First name
+    %th Last name
+    %th Email
+    %th Actions
+  - @not_friends.each do |friend|
+    %tr
+      %td= friend.first_name
+      %td= friend.last_name
+      %td= friend.email
+      %td
+        = link_to 'Send invitation', friends_path(receiver_id: friend.id), method: :post, class: 'btn btn-success'
+= link_to 'Back', friends_path, class: 'btn btn-info'

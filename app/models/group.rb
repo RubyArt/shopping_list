@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   has_many :users, through: :memberships
   belongs_to :owner, class_name: 'User'
 
-  validates :name, :users, :owner_id, presence: true
+  validates :name, :owner_id, presence: true
   validates :name, uniqueness: {scope: :owner_id, message: 'This group already exists!'}
 
   def owner?(user)

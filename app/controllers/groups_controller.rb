@@ -3,11 +3,16 @@ class GroupsController < ApplicationController
   before_action :check_access_to_group, only: [:edit, :update, :destroy]
 
   def index
-    @groups = current_user.groups
+    @groups = current_user.groups + current_user.owned_groups
   end
 
   def new
     @group = Group.new
+    @friends = current_user.friends
+  end
+
+  def edit
+    @friends = current_user.friends
   end
 
   def show
@@ -43,7 +48,7 @@ class GroupsController < ApplicationController
   private
 
   def check_access_to_group
-    unless current_user.owned_groups.include?(@group)
+    unless current_user.owned_groups.include?(@group)  # @group.owner?(current_user)
       redirect_to groups_path, alert: 'You are not authorized to edit this group'
     end
   end

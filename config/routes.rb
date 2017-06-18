@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resource :home, only: :index, controller: :home
   resources :groups
+  resources :friends, only: [:index, :new, :create]
 end
