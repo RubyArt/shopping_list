@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resource :home, only: :index, controller: :home
-  resources :groups
+  resources :groups do
+    resources :tasks
+  end
   resources :friends, only: [:index, :new, :create]
 end

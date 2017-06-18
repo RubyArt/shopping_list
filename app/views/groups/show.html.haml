@@ -8,5 +8,7 @@
 %p
   %b Users:
   = @group.users.order(:first_name).join(', ')
-
-= link_to 'Back', groups_path, class: 'btn btn-info'
+%p
+  = link_to 'Group tasks', group_tasks_path(@group), class: 'btn btn-primary'
+%p
+  = link_to 'Back', groups_path, class: 'btn btn-info'

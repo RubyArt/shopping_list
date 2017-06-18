@@ -8,6 +8,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
   %body
     - if current_user
+      = link_to 'Friends', friends_path
       = link_to 'Groups', groups_path
       = link_to 'Sign out', destroy_user_session_path, method: :delete
     - else
