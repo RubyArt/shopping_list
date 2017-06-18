@@ -1,4 +1,4 @@
 = simple_form_for @group do |f|
   = f.input :name
   = f.association :users, collection: @friends, as: :check_boxes
-  = f.submit
+  = f.submit class: 'btn btn-success'

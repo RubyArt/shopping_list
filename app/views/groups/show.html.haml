@@ -3,8 +3,10 @@
 
 %p
   %b Owner:
-  = @group.owner.email
+  = @group.owner
 
 %p
   %b Users:
-  = @group.users.order(:email).pluck(:email).join(', ')
+  = @group.users.order(:first_name).join(', ')
+
+= link_to 'Back', groups_path, class: 'btn btn-info'

@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   validates :email, :first_name, :last_name, presence: true
 
+  def user_groups
+    (groups + owned_groups).uniq
+  end
+
   def friends
     User.where(id: Friendship.for_user(self).map do |friendship|
                  [friendship.sender_id, friendship.receiver_id]
