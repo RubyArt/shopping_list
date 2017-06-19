@@ -16,7 +16,7 @@
       %td= task.name
       %td= task.description
       %td= task.creator
-      %td= Membership.find(task.owner_id).user
+      %td= Membership.find(task.owner_id).user if task.owner_id
       %td= task.completed
       %td
         = link_to 'Delete', group_task_path(@group, task), method: :delete, data: {confirm: 'Are you sure?'}
