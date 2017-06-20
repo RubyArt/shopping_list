@@ -9,7 +9,7 @@ class FriendsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.create(sender_id: current_user.id, receiver_id: params[:receiver_id])
+    Invitation.create(sender_id: current_user.id, receiver_id: params[:receiver_id])
     redirect_to friends_path
   end
 end

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :memberships, inverse_of: :user
   has_many :owned_groups, class_name: 'Group', foreign_key: :owner_id
   has_many :tasks, through: :groups # Do you need this association?
+  has_many :sent_invitations, class_name: 'Invitation', foreign_key: :sender_id
+  has_many :received_invitations, class_name: 'Invitation', foreign_key: :receiver_id
 
   validates :email, :first_name, :last_name, presence: true
 
