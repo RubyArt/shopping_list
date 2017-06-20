@@ -15,13 +15,19 @@
           - if current_user
             = main_menu_link 'Friends', friends_path, controller?('friends')
             = main_menu_link 'Groups', groups_path, controller?('groups')
-            = main_menu_link 'Invitations', invitations_path, controller?('invitations')
+            %li
+              = link_to invitations_path, class: controller?('invitations') do
+                = 'Invitations'
+                - if current_user.received_invitations.not_answered.count > 0
+                  %span.badge
+                    = current_user.received_invitations.not_answered.count
             = main_menu_link 'Sign out', destroy_user_session_path, false, method: :delete
           - else
             = main_menu_link 'Sign in', new_user_session_path, controller?('sessions')
             = main_menu_link 'Sign up', new_user_registration_path, controller?('registrations')
-    - if notice
-      %p.notice= notice
-    - if alert
-      %p.alert= alert
-    = yield
+    .content
+      - if notice
+        %p.notice= notice
+      - if alert
+        %p.alert= alert
+      = yield

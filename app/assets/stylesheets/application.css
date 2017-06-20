@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.content {
+    margin: 0 16px;
+}
+
+input[type='text'], input[type='email'], input[type='password'] {
+    width: 200px;
+}
