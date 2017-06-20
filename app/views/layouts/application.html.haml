@@ -7,13 +7,19 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
   %body
-    - if current_user
-      = link_to 'Friends', friends_path
-      = link_to 'Groups', groups_path
-      = link_to 'Sign out', destroy_user_session_path, method: :delete
-    - else
-      = link_to 'Sign in', new_user_session_path
-      = link_to 'Sign up', new_user_registration_path
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          = link_to 'TasksManager', root_path, class: 'navbar-brand'
+        %ul.nav.navbar-nav
+          - if current_user
+            = main_menu_link 'Friends', friends_path, controller?('friends')
+            = main_menu_link 'Groups', groups_path, controller?('groups')
+            = main_menu_link 'Invitations', invitations_path, controller?('invitations')
+            = main_menu_link 'Sign out', destroy_user_session_path, false, method: :delete
+          - else
+            = main_menu_link 'Sign in', new_user_session_path, controller?('sessions')
+            = main_menu_link 'Sign up', new_user_registration_path, controller?('registrations')
     - if notice
       %p.notice= notice
     - if alert
