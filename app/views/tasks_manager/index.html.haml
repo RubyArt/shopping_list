@@ -1,0 +1,14 @@
+%h2 Tasks manager
+
+%table.table.table-striped
+  %tr
+    %th Task
+    %th Description
+    %th Group
+    %th Status
+  - @tasks.each do |task|
+    %tr
+      %td= task.name
+      %td= task.description
+      %td= task.group
+      %td= task.completed ? 'completed' : 'uncompleted'

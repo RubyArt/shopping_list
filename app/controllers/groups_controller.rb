@@ -7,12 +7,10 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new
-    @friends = current_user.friends
+    @group = Group.new(owner: current_user)
   end
 
   def edit
-    @friends = current_user.friends
   end
 
   def show

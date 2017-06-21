@@ -1,6 +1,6 @@
 = simple_form_for [@group, @task] do |f|
   = f.input :name
   = f.input :description
-  = f.input :owner_id, collection: @memberships, as: :select
+  = f.input :owner_id, collection: @group.users, as: :select
   = f.input :completed, value: false
   = f.submit class: 'btn btn-success'
