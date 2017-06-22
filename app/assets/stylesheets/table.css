@@ -22,5 +22,14 @@ table.table {
 }
 
 .table tbody tr:hover td {
-    background-color: rgba(0, 184, 188, 0.2)
+    background-color: #18BC9C;
+    color: white;
+}
+
+.table tbody tr:hover td a {
+    color: #2C3E50;
+}
+
+.table tbody tr:hover td a:hover {
+    color: white;
 }
