@@ -5,12 +5,12 @@
     %tr
       %th Task
       %th Description
-      %th Group
+      %th.actions Group
       %th Status
   - @tasks.each do |task|
     %tbody
       %tr
         %td= task.name
         %td= task.description
-        %td= task.group
+        %td= link_to "#{task.group}", group_path(task.group), class: 'btn'
         %td= task.completed ? 'completed' : 'uncompleted'

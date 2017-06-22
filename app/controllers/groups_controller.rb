@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
   def edit; end
 
   def show
+    @tasks = @group.tasks
     @groups = current_user.groups
     unless @groups.include?(@group)
       redirect_to groups_path, alert: 'You are not authorized to see this group'

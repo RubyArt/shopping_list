@@ -2,10 +2,6 @@ class TasksController < ApplicationController
   before_action :group
   before_action :task, only: %i[edit update destroy]
 
-  def index
-    @tasks = @group.tasks
-  end
-
   def new
     @task = @group.tasks.new
   end
@@ -16,7 +12,7 @@ class TasksController < ApplicationController
     @task = @group.tasks.new(task_params)
     @task.creator = current_user
     if @task.save
-      redirect_to group_tasks_path(@group)
+      redirect_to group_path(@group)
     else
       render :new
     end
@@ -24,7 +20,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update_attributes(task_params)
-      redirect_to group_tasks_path(@group)
+      redirect_to group_path(@group)
     else
       render :edit
     end
@@ -32,7 +28,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to group_tasks_path(@group)
+    redirect_to group_path(@group)
   end
 
   private
