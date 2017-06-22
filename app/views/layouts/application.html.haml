@@ -10,7 +10,7 @@
     %nav.navbar.navbar-custom
       .container-fluid
         .navbar-header
-          = link_to 'TasksManager', tasks_manager_index_path, class: 'navbar-brand'
+          = link_to 'TasksManager', current_user ? tasks_manager_index_path : new_user_session_path, class: 'navbar-brand'
         %ul.nav.navbar-nav
           - if current_user
             = main_menu_link 'Friends', friends_path, controller?('friends')
