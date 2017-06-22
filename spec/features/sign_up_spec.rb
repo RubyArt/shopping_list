@@ -13,7 +13,7 @@ RSpec.feature 'Sign up' do
     fill_in 'user_password', with: 'secret12'
     fill_in 'user_password_confirmation', with: 'secret12'
 
-    within('.content') { expect { click_on 'Sign up' }.not_to change { User.count } }
+    within('.content') { expect { click_on 'Sign up' }.not_to(change { User.count }) }
     expect(page).to have_content "can't be blank"
     expect(page).to have_content 'has already been taken'
 
@@ -21,7 +21,7 @@ RSpec.feature 'Sign up' do
     fill_in 'user_password', with: 'secret12'
     fill_in 'user_password_confirmation', with: 'error'
 
-    within('.content') { expect { click_on 'Sign up' }.not_to change { User.count } }
+    within('.content') { expect { click_on 'Sign up' }.not_to(change { User.count }) }
     expect(page).to have_content "doesn't match Password"
 
     fill_in 'user_first_name', with: 'Steve'

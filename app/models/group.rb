@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Group < ApplicationRecord
   has_many :memberships, inverse_of: :group, dependent: :destroy
   has_many :users, through: :memberships
   has_many :tasks, inverse_of: :group, dependent: :destroy
