@@ -8,7 +8,9 @@ class FriendsController < ApplicationController
   end
 
   def create
-    Invitation.create(sender_id: current_user.id, receiver_id: params[:receiver_id])
+    invitation = Invitation.create(sender_id: current_user.id,
+                                   receiver_id: params[:receiver_id])
+    InvitationMailer.invitation_message(invitation).deliver_now
     redirect_to friends_path
   end
 end
