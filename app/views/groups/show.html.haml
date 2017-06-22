@@ -1,6 +1,7 @@
-%h2
-  %b= @group.name
-
+%h1
+  = @group.name
+  = link_to 'Add Task', group_tasks_path(@group), class: 'btn btn-success'
+  = link_to 'Back', groups_path, class: 'btn btn-info'
 %p
   %b Owner:
   = @group.owner
@@ -9,6 +10,3 @@
   %b Users:
   = @group.users.order(:first_name).join(', ')
 %p
-  = link_to 'Group tasks', group_tasks_path(@group), class: 'btn btn-primary'
-%p
-  = link_to 'Back', groups_path, class: 'btn btn-info'

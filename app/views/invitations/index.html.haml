@@ -1,19 +1,25 @@
 %h2 Received Invitations
-%table.table.table-striped
-  %tr
-    %th Sender
-    %th Actions
-  - @received_invitations.each do |invitation|
+
+%table.table
+  %thead
     %tr
-      %td= invitation.sender
-      %td
-        =link_to 'Accept', accept_invitation_path(invitation), method: :put, class: 'btn btn-info'
-        =link_to 'Decline', decline_invitation_path(invitation), method: :put, class: 'btn btn-danger'
+      %th Sender
+      %th.actions Actions
+  - @received_invitations.each do |invitation|
+    %tbody
+      %tr
+        %td= invitation.sender
+        %td
+          =link_to 'Accept', accept_invitation_path(invitation), method: :put, class: 'btn btn-info'
+          =link_to 'Decline', decline_invitation_path(invitation), method: :put, class: 'btn btn-danger'
 
 %h2 Sent Invitations
-%table.table.table-striped
-  %tr
-    %th Receiver
-  - @sent_invitations.each do |invitation|
+
+%table.table
+  %thead
     %tr
-      %td= invitation.receiver
+      %th Receiver
+  - @sent_invitations.each do |invitation|
+    %tbody
+      %tr
+        %td= invitation.receiver

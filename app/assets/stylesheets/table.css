@@ -1,0 +1,26 @@
+table.table {
+    border-bottom: 1px solid #2C3E50;
+}
+
+.table tbody tr td {
+    padding-left: 16px;
+    padding-right: 16px;
+    vertical-align: middle
+
+}
+
+.table thead tr th {
+    background-color: #2C3E50;
+    color: white;
+    text-transform: uppercase;
+    padding: 16px;
+    border: none;
+}
+
+.table thead tr th.actions {
+    padding-left: 30px;
+}
+
+.table tbody tr:hover td {
+    background-color: rgba(0, 184, 188, 0.2)
+}

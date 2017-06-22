@@ -7,7 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
   %body
-    %nav.navbar.navbar-default
+    %nav.navbar.navbar-custom
       .container-fluid
         .navbar-header
           = link_to 'TasksManager', tasks_manager_index_path, class: 'navbar-brand'
@@ -15,19 +15,23 @@
           - if current_user
             = main_menu_link 'Friends', friends_path, controller?('friends')
             = main_menu_link 'Groups', groups_path, controller?('groups')
-            %li
-              = link_to invitations_path, class: controller?('invitations') do
+            %li{class: controller?('invitations') ? 'active' : ''}
+              = link_to invitations_path do
                 = 'Invitations'
                 - if current_user.received_invitations.not_answered.count > 0
                   %span.badge
                     = current_user.received_invitations.not_answered.count
+        %ul.nav.navbar-nav.navbar-right
+          - if current_user
             = main_menu_link 'Sign out', destroy_user_session_path, false, method: :delete
           - else
             = main_menu_link 'Sign in', new_user_session_path, controller?('sessions')
             = main_menu_link 'Sign up', new_user_registration_path, controller?('registrations')
     .content
       - if notice
-        %p.notice= notice
+        .alert.alert-success
+          = notice
       - if alert
-        %p.alert= alert
+        .alert.alert-danger
+          = alert
       = yield

@@ -1,15 +1,18 @@
-%h1 Groups
-= link_to 'New group', new_group_path, class: 'btn btn-success'
+%h1
+  Groups
+  = link_to 'New group', new_group_path, class: 'btn btn-success'
 
-%table.table.table-striped
-  %tr
-    %th Name
-    %th Actions
-  - @groups.each do |group|
+%table.table
+  %thead
     %tr
-      %td= group.name
-      %td
-        = link_to 'Show', group_path(group)
-        - if group.owner?(current_user)
-          = link_to 'Edit', edit_group_path(group)
-          = link_to 'Delete', group_path(group), method: :delete, data: {confirm: 'Are you sure?'}
+      %th Name
+      %th.actions Actions
+  - @groups.each do |group|
+    %tbody
+      %tr
+        %td= group.name
+        %td
+          = link_to 'Show', group_path(group), class: 'btn'
+          - if group.owner?(current_user)
+            = link_to 'Edit', edit_group_path(group), class: 'btn'
+            = link_to 'Delete', group_path(group), class: 'btn', method: :delete, data: {confirm: 'Are you sure?'}
