@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
-  before_action :get_group
-  before_action :get_memberships, only: [:edit, :new]
-  before_action :get_task, only: [:edit, :update, :destroy]
+  before_action :group
+  before_action :task, only: %i[edit update destroy]
 
   def index
     @tasks = @group.tasks
@@ -11,8 +10,7 @@ class TasksController < ApplicationController
     @task = @group.tasks.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @task = @group.tasks.new(task_params)
@@ -39,15 +37,11 @@ class TasksController < ApplicationController
 
   private
 
-  def get_group
+  def group
     @group = Group.find(params[:group_id])
   end
 
-  def get_memberships
-    @memberships = @group.memberships
-  end
-
-  def get_task
+  def task
     @task = Task.find(params[:id])
   end
 

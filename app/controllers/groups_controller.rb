@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_action :get_group, only: [:show, :edit, :update, :destroy, :check_access_to_group]
-  before_action :check_access_to_group, only: [:edit, :update, :destroy]
+  before_action :group, only: %i[show edit update destroy check_access_to_group]
+  before_action :check_access_to_group, only: %i[edit update destroy]
 
   def index
     @groups = current_user.groups
@@ -10,8 +10,7 @@ class GroupsController < ApplicationController
     @group = Group.new(owner: current_user)
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
     @groups = current_user.groups
@@ -51,7 +50,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  def get_group
+  def group
     @group = Group.find(params[:id])
   end
 

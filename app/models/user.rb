@@ -15,15 +15,15 @@ class User < ApplicationRecord
 
   def friends
     User.where(id: Friendship.for_user(self).map do |friendship|
-                 [friendship.sender_id, friendship.receiver_id]
-               end.flatten.uniq - [self.id])
+                     [friendship.sender_id, friendship.receiver_id]
+                   end.flatten.uniq - [id])
   end
 
   def not_friends
     User.all - friends - [self]
   end
 
-  def is_a_friend_with?(user)
+  def friend_with?(user)
     friends.include?(user)
   end
 

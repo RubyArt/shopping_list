@@ -1,0 +1,47 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - config/initializers/devise.rb
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - app/controllers/devise_custom/*
+
+Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/GuardClause:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+Style/SymbolProc:
+  Exclude:
+    - app/admin/*
+
+Style/NumericLiteralPrefix:
+  Exclude:
+    - deploy/before_symlink.rb

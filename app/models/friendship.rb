@@ -5,7 +5,6 @@ class Friendship < ActiveRecord::Base
   validates :receiver_id, :sender_id, presence: true
 
   def self.for_user(user)
-    where('sender_id = :user_id OR receiver_id = :user_id', {user_id: user.id})
+    where('sender_id = :user_id OR receiver_id = :user_id', user_id: user.id)
   end
 end
-
