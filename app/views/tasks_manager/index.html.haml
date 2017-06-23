@@ -1,5 +1,7 @@
 %h2 Tasks manager
 
+%p
+  To do list
 %table.table
   %thead
     %tr
@@ -7,10 +9,27 @@
       %th Description
       %th.actions Group
       %th Status
-  - @tasks.each do |task|
+  - @uncompleted_tasks.each do |task|
     %tbody
       %tr
         %td= task.name
         %td= task.description
         %td= link_to "#{task.group}", group_path(task.group), class: 'btn'
-        %td= task.completed ? 'completed' : 'uncompleted'
+        %td uncompleted
+
+%p
+  Completed tasks
+%table.table
+  %thead
+    %tr
+      %th Task
+      %th Description
+      %th.actions Group
+      %th Status
+  - @completed_tasks.each do |task|
+    %tbody
+      %tr
+        %td= task.name
+        %td= task.description
+        %td= link_to "#{task.group}", group_path(task.group), class: 'btn'
+        %td completed

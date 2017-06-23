@@ -7,7 +7,7 @@
   = @group.owner
 
 %p
-  %b Users:
+  %b Members:
   = @group.users.order(:first_name).join(', ')
 %h2
   = "#{@group.name} group's tasks"

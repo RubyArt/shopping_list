@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :group
   before_action :task, only: %i[edit update destroy]
+  before_action :check_access_to_task
 
   def new
     @task = @group.tasks.new
@@ -43,5 +44,11 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:completed, :description, :name, :owner_id)
+  end
+
+  def check_access_to_task
+    unless @group.member?(current_user)
+      redirect_to root_path, alert: 'You are not authorized to create/edit task for this group'
+    end
   end
 end

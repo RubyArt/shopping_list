@@ -1,5 +1,6 @@
 class TasksManagerController < ApplicationController
   def index
-    @tasks = current_user.tasks
+    @completed_tasks = current_user.tasks.completed
+    @uncompleted_tasks = current_user.tasks.uncompleted
   end
 end

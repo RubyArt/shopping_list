@@ -20,7 +20,12 @@ class User < ApplicationRecord
   end
 
   def not_friends
-    User.all - friends - [self]
+    User.all - friends - invited_friends - [self]
+  end
+
+  def invited_friends
+    User.where(id: Invitation.all.select { |i| i.receiver_id == id || i.sender_id == id }
+                     .map { |i| [i.sender_id, i.receiver_id] }.flatten.uniq - [id])
   end
 
   def friend_with?(user)

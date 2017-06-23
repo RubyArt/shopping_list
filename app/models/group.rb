@@ -13,6 +13,10 @@ class Group < ApplicationRecord
     owner_id == user.id
   end
 
+  def member?(user)
+    users.include?(user)
+  end
+
   def to_s
     name
   end

@@ -4,4 +4,7 @@ class Task < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id, optional: true
 
   validates :name, :group_id, presence: true
+
+  scope :completed, -> { where(completed: true) }
+  scope :uncompleted, -> { where(completed: false) }
 end
