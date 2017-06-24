@@ -23,16 +23,18 @@ class User < ApplicationRecord
     User.all - friends - invited_friends - [self]
   end
 
-  def invited_friends
-    User.where(id: Invitation.all.select { |i| i.receiver_id == id || i.sender_id == id }
-                     .map { |i| [i.sender_id, i.receiver_id] }.flatten.uniq - [id])
-  end
-
   def friend_with?(user)
     friends.include?(user)
   end
 
   def to_s
     "#{first_name} #{last_name}"
+  end
+
+  private
+
+  def invited_friends
+    User.where(id: Invitation.all.select { |i| i.receiver_id == id || i.sender_id == id }
+                     .map { |i| [i.sender_id, i.receiver_id] }.flatten.uniq - [id])
   end
 end
