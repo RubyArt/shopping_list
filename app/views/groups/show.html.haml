@@ -10,7 +10,7 @@
   %b Members:
   = @group.users.order(:first_name).join(', ')
 %h2
-  = "#{@group.name} group's tasks"
+  Tasks
 %table.table
   %thead
     %tr
@@ -27,7 +27,7 @@
         %td= task.description
         %td= task.creator
         %td= task.owner if task.owner_id
-        %td= task.completed
+        %td= task.completed ? 'completed' : 'not completed'
         %td
           = link_to 'Edit', edit_group_task_path(@group, task), class: 'btn'
           = link_to 'Delete', group_task_path(@group, task), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn'

@@ -12,7 +12,7 @@ RSpec.feature 'Tasks' do
     visit root_path
 
     click_on 'Groups'
-    click_on 'Show'
+    click_on 'Tasks'
 
     expect(page).to have_content('Wanda Maximoff')
     expect(page).to have_content('Pietro Maximoff')
@@ -40,9 +40,9 @@ RSpec.feature 'Tasks' do
     visit root_path
 
     click_on 'Groups'
-    click_on 'Show'
+    click_on 'Tasks'
 
-    expect(page).to have_content("Family group's tasks")
+    expect(page).to have_content('Tasks')
     click_on 'Edit'
 
     fill_in 'task_description', with: 'New York'
@@ -50,7 +50,7 @@ RSpec.feature 'Tasks' do
     click_on 'Update Task'
 
     expect(page).to have_content('New York')
-    expect(page).to have_content('true')
+    expect(page).to have_content('completed')
   end
 
   scenario 'user who is not a group member cannot create a task' do

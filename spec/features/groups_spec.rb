@@ -93,7 +93,7 @@ RSpec.feature 'Groups' do
     check 'Pietro Maximoff'
 
     click_on 'Update Group'
-    click_on 'Show'
+    click_on 'Tasks'
 
     expect(page).to have_content('Pietro Maximoff')
   end

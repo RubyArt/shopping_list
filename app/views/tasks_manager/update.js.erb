@@ -1,0 +1,14 @@
+$("#task_<%= @task.id %>").remove();
+task = ("<%= escape_javascript(render partial: 'tasks_manager/task', locals: {task: @task}) %>")
+<% if @was_completed %>
+  $("#uncompleted_tasks_tbody").prepend(task);
+<% else %>
+  $("#completed_tasks_tbody").prepend(task);
+<% end %>
+$("#task_<%= @task.id %>").effect('highlight');
+$("#task_<%= @task.id %>").on('change', function(e) {
+    complete_check_handler (e)
+});
+
+$("#uncompleted_tasks_counter").effect('highlight');
+$("#uncompleted_tasks_counter").html(<%= current_user.tasks.uncompleted.count %>);

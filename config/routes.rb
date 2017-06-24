@@ -13,5 +13,5 @@ Rails.application.routes.draw do
       put :decline
     end
   end
-  resources :tasks_manager, only: :index
+  resources :tasks_manager, only: %i[index update]
 end

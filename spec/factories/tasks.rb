@@ -9,6 +9,7 @@ FactoryGirl.define do
 
     trait :completed do
       completed true
+      completed_at { Time.current }
     end
   end
 end

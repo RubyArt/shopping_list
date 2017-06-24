@@ -13,6 +13,11 @@
           = link_to 'TasksManager', current_user ? tasks_manager_index_path : new_user_session_path, class: 'navbar-brand'
         %ul.nav.navbar-nav
           - if current_user
+            %li{class: controller?('tasks_manager') ? 'active' : ''}
+              = link_to tasks_manager_index_path do
+                = 'To Do'
+                %span.badge#uncompleted_tasks_counter
+                  = current_user.tasks.uncompleted.count
             = main_menu_link 'Friends', friends_path, controller?('friends')
             = main_menu_link 'Groups', groups_path, controller?('groups')
             %li{class: controller?('invitations') ? 'active' : ''}

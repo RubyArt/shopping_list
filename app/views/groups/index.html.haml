@@ -11,7 +11,7 @@
       %tr
         %td= group.name
         %td
-          = link_to 'Show', group_path(group), class: 'btn'
+          = link_to 'Tasks', group_path(group), class: 'btn'
           - if group.owner?(current_user)
             = link_to 'Edit', edit_group_path(group), class: 'btn'
             = link_to 'Delete', group_path(group), class: 'btn', method: :delete, data: {confirm: 'Are you sure?'}

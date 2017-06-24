@@ -1,0 +1,5 @@
+%tr{id: "task_#{task.id}"}
+  %td= check_box_tag 'completed', 'completed', task.completed?, id: "task_checkbox_#{task.id}", class: 'task_manager_complete_checkbox', data: { id: task.id }
+  %td= task.name
+  %td= task.description
+  %td= link_to "#{task.group}", group_path(task.group), class: 'btn'

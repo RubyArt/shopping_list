@@ -1,0 +1,10 @@
+%table.table{id: table_id}
+  %thead
+    %tr
+      %th
+      %th Task
+      %th Description
+      %th.actions Group
+  %tbody{id: "#{table_id}_tbody"}
+    - tasks.each do |task|
+      = render 'task', task: task

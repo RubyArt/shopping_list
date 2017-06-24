@@ -12,6 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+function complete_check_handler(e) {
+  $.ajax({
+    method: "PUT",
+    dataType: "script",
+    url: "/tasks_manager/" + $(e.target).data('id')
+  });
+}
+
+document.addEventListener("turbolinks:load", function() {
+  $('.task_manager_complete_checkbox').on('change', function(e) {
+    complete_check_handler (e)
+  });
+});

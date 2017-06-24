@@ -2,34 +2,8 @@
 
 %p
   To do list
-%table.table
-  %thead
-    %tr
-      %th Task
-      %th Description
-      %th.actions Group
-      %th Status
-  - @uncompleted_tasks.each do |task|
-    %tbody
-      %tr
-        %td= task.name
-        %td= task.description
-        %td= link_to "#{task.group}", group_path(task.group), class: 'btn'
-        %td uncompleted
+  = render 'tasks_table', tasks: @uncompleted_tasks, table_id: 'uncompleted_tasks'
 
 %p
   Completed tasks
-%table.table
-  %thead
-    %tr
-      %th Task
-      %th Description
-      %th.actions Group
-      %th Status
-  - @completed_tasks.each do |task|
-    %tbody
-      %tr
-        %td= task.name
-        %td= task.description
-        %td= link_to "#{task.group}", group_path(task.group), class: 'btn'
-        %td completed
+  = render 'tasks_table', tasks: @completed_tasks, table_id: 'completed_tasks'

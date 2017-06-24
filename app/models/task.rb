@@ -5,6 +5,20 @@ class Task < ApplicationRecord
 
   validates :name, :group_id, presence: true
 
-  scope :completed, -> { where(completed: true) }
-  scope :uncompleted, -> { where(completed: false) }
+  after_save :set_accepted_at
+
+  scope :completed, -> { where(completed: true).order(completed_at: :desc) }
+  scope :uncompleted, -> { where(completed: false).order(created_at: :desc) }
+
+  private
+
+  def set_accepted_at
+    if completed_changed?
+      if completed?
+        update_column(:completed_at, Time.current)
+      else
+        update_column(:completed_at, nil)
+      end
+    end
+  end
 end
