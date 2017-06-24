@@ -26,6 +26,7 @@
                 - if current_user.received_invitations.not_answered.count > 0
                   %span.badge
                     = current_user.received_invitations.not_answered.count
+            = main_menu_link 'Dashboard', dashboard_index_path, controller?('dashboard')
         %ul.nav.navbar-nav.navbar-right
           - if current_user
             = main_menu_link 'Sign out', destroy_user_session_path, false, method: :delete
